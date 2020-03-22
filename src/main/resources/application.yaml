@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: dev
+---
+
+spring:
+  profiles: dev
+sentry.name: Sandro
+---
+spring:
+  profiles: prod
+sentry.name: Havana
