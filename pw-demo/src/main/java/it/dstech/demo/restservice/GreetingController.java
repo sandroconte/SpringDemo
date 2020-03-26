@@ -1,4 +1,4 @@
-package com.spring.demo.restservice;
+package it.dstech.demo.restservice;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +19,7 @@ public class GreetingController {
 
     @Value("${sentry.profile}")
     private String profile;
+
     @Value("${sentry.dns}")
     private String dns;
 
@@ -31,7 +32,8 @@ public class GreetingController {
     }
 
     @GetMapping("/properties")
-    public Map<String, String> properties(){
-        return Map.of("name", name, "profile", profile, "dns", dns);
+    public String properties(){
+        String properties = "name: " + this.name +  "; profile: " + profile + "; dns: " + dns;
+        return properties;
     }
 }

@@ -6,22 +6,33 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="eureka-docker" />
+        <module name="gw-docker" />
+        <module name="demo" />
         <module name="config" />
+      </profile>
+      <profile name="Annotation profile for docker-starter-parent" enabled="true">
+        <sourceOutputDir name="../eureka-docker/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../eureka-docker/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="eureka-docker" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="config" target="1.8" />
-      <module name="demo" target="11" />
+      <module name="demo" target="1.8" />
       <module name="eureka-docker" target="1.8" />
+      <module name="gw-docker" target="1.8" />
       <module name="SpringDemo" target="1.5" />
+      <module name="starter-services" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="config" options="-parameters" />
+      <module name="config" options="" />
       <module name="demo" options="-parameters" />
       <module name="eureka-docker" options="-parameters" />
+      <module name="gw-docker" options="-parameters" />
+      <module name="starter-services" options="-parameters" />
     </option>
   </component>
 </project>

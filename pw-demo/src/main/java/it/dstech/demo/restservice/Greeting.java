@@ -1,4 +1,4 @@
-package com.spring.demo.restservice;
+package it.dstech.demo.restservice;
 
 public class Greeting {
 

@@ -7,8 +7,11 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>eureka-docker</module>
+        <module>eureka</module>
         <module>config-server</module>
+        <module>gateway</module>
+        <module>pw-demo</module>
+<!--        <module>pw-services</module>-->
     </modules>
 
 </project>

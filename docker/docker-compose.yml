@@ -1,32 +1,32 @@
 version: '3.1'
 
 services:
-#    gateway:
-#        image: 'gw-boot'
-#        build:
-#            context: ../gw-docker
-#            dockerfile: Dockerfile
-#            args:
-#                JAR_FILE: gw-docker-0.0.1-SNAPSHOT.jar
-#        container_name: 'starter-api-gateway'
-#        ports:
-#            - 8050:8050
-#        environment:
-#            - REGISTRY_HOST=registry
-#        networks:
-#            - starter-api-network
-#        restart: on-failure
-#        depends_on:
-#          - registry
+    gateway:
+        image: 'gw-boot'
+        build:
+            context: ../gateway
+            dockerfile: Dockerfile
+            args:
+                JAR_FILE: gw-docker-0.0.1-SNAPSHOT.jar
+        container_name: 'pw-api-gateway'
+        ports:
+            - 8050:8050
+        environment:
+            - REGISTRY_HOST=registry
+        networks:
+            - starter-api-network
+        restart: on-failure
+        depends_on:
+          - registry
 
     registry:
         image: 'eureka-boot'
         build:
-            context: ../eureka-docker
+            context: ../eureka
             dockerfile: Dockerfile
             args:
                 JAR_FILE: eureka-docker-0.0.1-SNAPSHOT.jar
-        container_name: 'starter-api-registry'
+        container_name: 'pw-api-registry'
         ports:
             - 8761:8761
         networks:
@@ -40,9 +40,24 @@ services:
             dockerfile: Dockerfile
             args:
                 JAR_FILE: config-0.0.1-SNAPSHOT.jar
-        container_name: 'starter-api-config'
+        container_name: 'pw-api-config'
         ports:
             - 8060
+        networks:
+            - starter-api-network
+#        restart: on-failure
+
+
+    pw-demo:
+        image: 'pw-demo'
+        build:
+            context: ../pw-demo
+            dockerfile: Dockerfile
+            args:
+                JAR_FILE: demo-0.0.1-SNAPSHOT.jar
+        container_name: 'pw-api-demo'
+        ports:
+            - 8080:8080
         networks:
             - starter-api-network
         restart: on-failure
@@ -76,24 +91,23 @@ services:
 #    starter-services:
 #        image: 'starter-api-services'
 #        build:
-#            context: ../starter-services
+#            context: ../pw-services
 #            dockerfile: Dockerfile
 #            args:
 #                JAR_FILE: starter-services-0.0.1-SNAPSHOT.jar
-#        container_name: 'starter-api-services'
+#        container_name: 'pw-api-services'
 #        ports:
 #            - 8080
 #        environment:
 #            - REGISTRY_HOST=registry
-#            - REDISDB_HOST=redis
 #            - GW_HOST=gateway
 #            - IDM_NAME=starter-idm
 #            - DATABASE_HOST=database
 #            - DATABASE_DB=docker-test
 #            - DATABASE_USER=docker
 #            - DATABASE_PASSWORD=docker
-##            - AES_KEY=0123456789012345
-##        volumes:
+#            - AES_KEY=0123456789012345
+#        volumes:
 ##            - /var/starter/files:/var/starter/files
 #        networks:
 #            - starter-api-network

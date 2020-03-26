@@ -4,7 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SpringDemo.iml" filepath="$PROJECT_DIR$/SpringDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/config-server/config.iml" filepath="$PROJECT_DIR$/config-server/config.iml" />
-      <module fileurl="file://$PROJECT_DIR$/eureka-docker/eureka-docker.iml" filepath="$PROJECT_DIR$/eureka-docker/eureka-docker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pw-demo/demo.iml" filepath="$PROJECT_DIR$/pw-demo/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka/eureka-docker.iml" filepath="$PROJECT_DIR$/eureka/eureka-docker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway/gw-docker.iml" filepath="$PROJECT_DIR$/gateway/gw-docker.iml" />
     </modules>
   </component>
 </project>

@@ -1,0 +1,33 @@
+#spring.cloud.config.uri=http://localhost:8888/
+
+server:
+  port: 8050
+  address: 0.0.0.0
+
+spring:
+  application:
+    name: gw-docker
+
+
+zuul:
+  sensitiveHeaders: Cookie,Set-Cookie
+  add-proxy-headers: true
+
+ribbon:
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
+  
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${registry.host:0.0.0.0}:${registry.port:8761}/eureka
+    
