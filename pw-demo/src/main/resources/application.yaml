@@ -1,8 +1,9 @@
 spring:
   profiles:
     active: dev
+  application:
+    name: pw-demo
 ---
-
 spring:
   profiles: dev
 sentry.name: Sandro
@@ -10,3 +11,11 @@ sentry.name: Sandro
 spring:
   profiles: prod
 sentry.name: Havana
+---
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${registry.host:localhost}:${registry.port:8761}/eureka
