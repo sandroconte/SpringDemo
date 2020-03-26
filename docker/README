@@ -1,0 +1,35 @@
+#STEP 1: build all projects (from spring-cloud dir)
+mvn clean package -DskipTests
+
+#to build with docker compose (from project_dir/docker)
+docker-compose build
+
+#to start container with docker-compose
+docker-compose up
+
+#to start container with docker-compose in background
+docker-compose up -d
+
+#to list docker processes
+docker ps
+
+#to stop container with docker-compose
+docker-compose stop
+
+#to stop and remove container with docker-compose
+docker-compose down
+
+#to scale services
+docker-compose scale service1=3
+
+#to list images
+docker image ps
+
+#to remove image
+docker rmi <image-name-or-id>
+
+#to save docker image
+docker save <image-name> > mvc-boot.tar
+
+#to load docker image
+docker load < mvc-boot.tar

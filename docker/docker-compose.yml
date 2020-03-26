@@ -1,0 +1,129 @@
+version: '3.1'
+
+services:
+#    gateway:
+#        image: 'gw-boot'
+#        build:
+#            context: ../gw-docker
+#            dockerfile: Dockerfile
+#            args:
+#                JAR_FILE: gw-docker-0.0.1-SNAPSHOT.jar
+#        container_name: 'starter-api-gateway'
+#        ports:
+#            - 8050:8050
+#        environment:
+#            - REGISTRY_HOST=registry
+#        networks:
+#            - starter-api-network
+#        restart: on-failure
+#        depends_on:
+#          - registry
+
+    registry:
+        image: 'eureka-boot'
+        build:
+            context: ../eureka-docker
+            dockerfile: Dockerfile
+            args:
+                JAR_FILE: eureka-docker-0.0.1-SNAPSHOT.jar
+        container_name: 'starter-api-registry'
+        ports:
+            - 8761:8761
+        networks:
+            - starter-api-network
+        restart: on-failure
+
+    config:
+        image: 'config-server'
+        build:
+            context: ../config-server
+            dockerfile: Dockerfile
+            args:
+                JAR_FILE: config-0.0.1-SNAPSHOT.jar
+        container_name: 'starter-api-config'
+        ports:
+            - 8060
+        networks:
+            - starter-api-network
+        restart: on-failure
+
+#    starter-idm:
+#        image: 'starter-api-idm'
+#        build:
+#            context: ../starter-idm
+#            dockerfile: Dockerfile
+#            args:
+#                JAR_FILE: starter-idm-0.0.1-SNAPSHOT.jar
+#        container_name: 'starter-api-idm'
+#        ports:
+#            - 8081
+#        environment:
+#            - REGISTRY_HOST=registry
+#            - REDISDB_HOST=redis
+#            - DATABASE_HOST=database
+#            - DATABASE_DB=docker-test
+#            - DATABASE_USER=docker
+#            - DATABASE_PASSWORD=docker
+#        networks:
+#            - starter-api-network
+#        depends_on:
+#            - database
+#            - gateway
+#            - registry
+#            - redis
+#        restart: on-failure
+
+#    starter-services:
+#        image: 'starter-api-services'
+#        build:
+#            context: ../starter-services
+#            dockerfile: Dockerfile
+#            args:
+#                JAR_FILE: starter-services-0.0.1-SNAPSHOT.jar
+#        container_name: 'starter-api-services'
+#        ports:
+#            - 8080
+#        environment:
+#            - REGISTRY_HOST=registry
+#            - REDISDB_HOST=redis
+#            - GW_HOST=gateway
+#            - IDM_NAME=starter-idm
+#            - DATABASE_HOST=database
+#            - DATABASE_DB=docker-test
+#            - DATABASE_USER=docker
+#            - DATABASE_PASSWORD=docker
+##            - AES_KEY=0123456789012345
+##        volumes:
+##            - /var/starter/files:/var/starter/files
+#        networks:
+#            - starter-api-network
+#        depends_on:
+#            - starter-idm
+#        restart: on-failure
+
+#    database:
+#        image: postgres:9.6
+#        container_name: 'starter-api-postgres'
+#        environment:
+#            - POSTGRES_USER=docker
+#            - POSTGRES_PASSWORD=docker
+#            - POSTGRES_DB=docker-test
+#        volumes:
+#            - /var/lib/starter/postgresql/data:/var/lib/postgresql/data
+#        ports:
+#            - 5432:5432
+#        networks:
+#            - starter-api-network
+#        restart: on-failure
+
+    
+networks:
+    starter-api-network:
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 10.5.0.0/16
+#    db-data:
+#        driver: local
+#    redis-data:
+#        driver: local    
