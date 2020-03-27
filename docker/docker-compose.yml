@@ -42,25 +42,29 @@ services:
                 JAR_FILE: config-0.0.1-SNAPSHOT.jar
         container_name: 'pw-api-config'
         ports:
-            - 8060
-        networks:
-            - starter-api-network
-#        restart: on-failure
-
-
-    pw-demo:
-        image: 'pw-demo'
-        build:
-            context: ../pw-demo
-            dockerfile: Dockerfile
-            args:
-                JAR_FILE: demo-0.0.1-SNAPSHOT.jar
-        container_name: 'pw-api-demo'
-        ports:
-            - 8080:8080
+            - 8888:8888
         networks:
             - starter-api-network
         restart: on-failure
+
+    spring-demo:
+        image: 'spring-demo'
+        build:
+            context: ../spring-demo
+            dockerfile: Dockerfile
+            args:
+                JAR_FILE: spring-demo-0.0.1-SNAPSHOT.jar
+        container_name: 'pw-api-demo'
+        ports:
+            - 8090:8090
+        depends_on:
+            - config
+            - gateway
+            - registry
+        networks:
+            - starter-api-network
+
+#        restart: on-failure
 
 #    starter-idm:
 #        image: 'starter-api-idm'

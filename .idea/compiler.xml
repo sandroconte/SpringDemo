@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="gw-docker" />
-        <module name="demo" />
         <module name="config" />
       </profile>
       <profile name="Annotation profile for docker-starter-parent" enabled="true">

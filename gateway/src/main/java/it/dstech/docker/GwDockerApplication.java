@@ -15,6 +15,7 @@ import org.springframework.web.filter.CorsFilter;
 public class GwDockerApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(GwDockerApplication.class, args);
 	}
 	
